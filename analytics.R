@@ -45,11 +45,17 @@ RAnalytics <- function()
     # count the total amount of reviews with more than 100 words
     result <- subset(overall, select = -c(totalWords))
     
-    # print the results
+    # create the dataframe
+    df = data.frame(result)
+
+    # create the output as a JSON file
+    write_json(df, file("orderedReviews.json"), pretty=TRUE)
+
+    # print the numbers of rows
     print(nrow(result))
 
-    # create the new table
-    write.table(result, "Analytics.txt", sep="\t", row.names = FALSE)
+    # create as a text file instead of JSON
+   # write.table(result, "Analytics.txt", sep="\t", row.names = FALSE)
 }
 
 RAnalytics <- RAnalytics()
